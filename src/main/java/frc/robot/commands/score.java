@@ -9,6 +9,7 @@ import frc.robot.subsystems.Ground_Intake;
 
 public class score extends CommandBase {
   private Ground_Intake ground_Intake = new Ground_Intake();
+  private double d;
   /** Creates a new score. */
   public score(Ground_Intake ground_Intake) {
     this.ground_Intake = ground_Intake;
@@ -24,10 +25,15 @@ public class score extends CommandBase {
   @Override
   public void execute() {
     ground_Intake.toggleTilt();
-    "TODO: ADD TIMER"
+    delay(3.5);
     ground_Intake.toggleClamp();
-    "TODO: ADD TIMER"
+    delay(3.5);
     ground_Intake.toggleKicker();
+    delay(1.5);
+    ground_Intake.toggleKicker();
+  }
+
+  private void delay(double d) {
   }
 
   // Called once the command ends or is interrupted.

@@ -17,9 +17,9 @@ public class Ground_Intake extends SubsystemBase {
 
 
 
-  private DoubleSolenoid clampSolenoid;
-  private DoubleSolenoid kickerSolenoid;
-  private DoubleSolenoid tiltSolenoid;
+  public DoubleSolenoid clampSolenoid;
+  public DoubleSolenoid kickerSolenoid;
+  public DoubleSolenoid tiltSolenoid;
   
   public Ground_Intake() {
     clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 

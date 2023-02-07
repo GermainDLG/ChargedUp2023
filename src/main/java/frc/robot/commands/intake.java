@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
 
@@ -24,8 +26,12 @@ public class intake extends CommandBase {
   @Override
   public void execute() {
     ground_Intake.toggleClamp();
-    "TODO: ADD TIMER!!"
+    delay(3.5);
+    // We can also use: new WaitCommand(5.0) if needed
     ground_Intake.toggleTilt();
+  }
+
+  private void delay(double d) {
   }
 
   // Called once the command ends or is interrupted.
