@@ -24,6 +24,7 @@ public class score extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //Tilt robot down, open clamp, send out kicker, wait 1.5s, bring kicker back in
     ground_Intake.toggleTilt();
     delay(3.5);
     ground_Intake.toggleClamp();

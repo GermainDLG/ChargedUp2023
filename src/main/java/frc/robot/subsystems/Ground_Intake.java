@@ -40,7 +40,7 @@ public class Ground_Intake extends SubsystemBase {
 
   }
 
-
+  	//If the clamp is already closed, open, otherwise, close it
 	public void toggleClamp(){
 		if (clampSolenoid.get() == Value.kForward){
 			clampSolenoid.set(Value.kReverse);
@@ -51,6 +51,7 @@ public class Ground_Intake extends SubsystemBase {
 		}
 	}
 
+	//If the kicker is open, bring it back in. Otherwise, push it out
 	public void toggleKicker(){
 		if (kickerSolenoid.get() == Value.kForward){
 			kickerSolenoid.set(Value.kReverse);
@@ -60,6 +61,7 @@ public class Ground_Intake extends SubsystemBase {
 		}
 	}
 
+	//If the robot is tilted up, tilt down. Otherwise, tilt up
 	public void toggleTilt(){
 		if (tiltSolenoid.get() == Value.kForward){
 			tiltSolenoid.set(Value.kReverse);
