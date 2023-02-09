@@ -4,8 +4,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
 
@@ -16,6 +16,7 @@ public class intake extends CommandBase {
     this.ground_Intake = ground_Intake;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ground_Intake);
+
   }
 
   // Called when the command is initially scheduled.
@@ -25,10 +26,13 @@ public class intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ground_Intake.toggleClamp();
+    ground_Intake.returnKicker();
     delay(3.5);
+    ground_Intake.closeClamp();
+    delay(3.5);
+    ground_Intake.tiltUpward();
+  
     // We can also use: new WaitCommand(5.0) if needed
-    ground_Intake.toggleTilt();
   }
 
   private void delay(double d) {

@@ -25,13 +25,13 @@ public class score extends CommandBase {
   @Override
   public void execute() {
     //Tilt robot down, open clamp, send out kicker, wait 1.5s, bring kicker back in
-    ground_Intake.toggleTilt();
+    ground_Intake.tiltDownward();
     delay(3.5);
-    ground_Intake.toggleClamp();
+    ground_Intake.openClamp();
     delay(3.5);
-    ground_Intake.toggleKicker();
+    ground_Intake.sendKicker();
     delay(1.5);
-    ground_Intake.toggleKicker();
+    ground_Intake.returnKicker();
   }
 
   private void delay(double d) {
