@@ -7,8 +7,10 @@ package frc.robot;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -41,7 +43,7 @@ public class RobotContainer {
   private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
   private final JoystickButton outtakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
-
+  private Compressor compressor;
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
   private final Ground_Intake ground_intake = new Ground_Intake();
@@ -65,6 +67,9 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    compressor = new Compressor(1, PneumaticsModuleType.REVPH);
+		compressor.enableDigital();
+
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
             s_Swerve, 

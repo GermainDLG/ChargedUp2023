@@ -22,17 +22,17 @@ public class Ground_Intake extends SubsystemBase {
   public DoubleSolenoid tiltSolenoid;
   
   public Ground_Intake() {
-    clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 
+    clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 
     Constants.GROUND_INTAKE_SOLENOID_PORTS[0], Constants.GROUND_INTAKE_SOLENOID_PORTS[1]);
 	/* PORT[0] forward channel
 	 * PORT[1] backward channel
 	 */
-	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
+	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH,
 	Constants.GROUND_INTAKE_SOLENOID_PORTS[2], Constants.GROUND_INTAKE_SOLENOID_PORTS[3]);
 	/* PORT[2] forward channel
 	 * PORT[3] backward channel
 	 */
-	tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
+	tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH,
 	Constants.GROUND_INTAKE_SOLENOID_PORTS[4], Constants.GROUND_INTAKE_SOLENOID_PORTS[5]);
 	/* PORT[4] forward channel
 	 * PORT[5] backward channel
