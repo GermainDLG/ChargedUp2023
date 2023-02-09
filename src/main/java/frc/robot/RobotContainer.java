@@ -46,11 +46,11 @@ public class RobotContainer {
   private Compressor compressor;
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
-  private final Ground_Intake ground_intake = new Ground_Intake();
+  private Ground_Intake ground_intake;
 
   /* Pneumatics Commands*/
-  public final Command intake = new intake(ground_intake);
-  public final Command outtake = new score(ground_intake);
+  public final Command intake;
+  public final Command outtake;
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -67,8 +67,13 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    compressor = new Compressor(1, PneumaticsModuleType.REVPH);
-		compressor.enableDigital();
+    // = new Compressor(0, PneumaticsModuleType.CTREPCM);
+		//zzzzzzzzzzzzcompressor.enableDigital();
+    //compressor.disable();
+
+    ground_intake = new Ground_Intake();
+    intake = new frc.robot.commands.intake(ground_intake);
+    outtake = new frc.robot.commands.score(ground_intake);
 
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
@@ -79,7 +84,7 @@ public class RobotContainer {
             () -> robotCentric.getAsBoolean()
         )
     );
-    SmartDashboard.putNumber("Max Speed", SPEED_MULTIPLIER);
+    SmartDashboard.putNumber("Mazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzx Speed", SPEED_MULTIPLIER);
     // Configure the button bindings
     configureButtonBindings();
 

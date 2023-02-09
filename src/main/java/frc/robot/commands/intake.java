@@ -10,10 +10,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
 
 public class intake extends CommandBase {
-  private Ground_Intake ground_Intake = new Ground_Intake();
+  private Ground_Intake ground_Intake;
   /** Creates a new intake. */
-  public intake(Ground_Intake ground_Intake) {
-    this.ground_Intake = ground_Intake;
+  public intake(Ground_Intake intake) {
+    ground_Intake = intake;
+    //this.ground_Intake = ground_Intake;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ground_Intake);
 

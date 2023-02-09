@@ -133,6 +133,6 @@ public final class Constants {
     public static final double kPThetaController = 1;
   }
 
-public static final int[] GROUND_INTAKE_PORTS = {0, 0};
-public static final int[] GROUND_INTAKE_SOLENOID_PORTS = {0, 0};
+//public static final int[] GROUND_INTAKE_PORTS = {0, 0};
+public static final int[] GROUND_INTAKE_SOLENOID_PORTS = {0, 1, 2, 3, 4, 5};
 }
