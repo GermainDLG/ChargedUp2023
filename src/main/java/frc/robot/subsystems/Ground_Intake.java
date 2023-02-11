@@ -22,17 +22,17 @@ public class Ground_Intake extends SubsystemBase {
   public DoubleSolenoid tiltSolenoid;
   
   public Ground_Intake() {
-    clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 
+    clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 
     Constants.GROUND_INTAKE_SOLENOID_PORTS[0], Constants.GROUND_INTAKE_SOLENOID_PORTS[1]);
 	/* PORT[0] forward channel
 	 * PORT[1] backward channel
 	 */
-	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH,
+	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
 	Constants.GROUND_INTAKE_SOLENOID_PORTS[2], Constants.GROUND_INTAKE_SOLENOID_PORTS[3]);
 	/* PORT[2] forward channel
 	 * PORT[3] backward channel
 	 */
-	tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH,
+	tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
 	Constants.GROUND_INTAKE_SOLENOID_PORTS[4], Constants.GROUND_INTAKE_SOLENOID_PORTS[5]);
 	/* PORT[4] forward channel
 	 * PORT[5] backward channel
@@ -57,7 +57,7 @@ public class Ground_Intake extends SubsystemBase {
 
 	//bring kicker back in
 	public void returnKicker(){
-		kickerSolenoid.set(Value.kForward);
+		kickerSolenoid.set(Value.kReverse);
 	}
 
 	//Tilt robot forward
@@ -67,7 +67,7 @@ public class Ground_Intake extends SubsystemBase {
 
 	//Tilt robot back upright
 	public void tiltDownward(){
-		tiltSolenoid.set(Value.kForward);
+		tiltSolenoid.set(Value.kReverse);
 	}
 
 
