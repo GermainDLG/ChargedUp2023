@@ -46,7 +46,7 @@ public class RobotContainer {
   private Compressor compressor;
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
-  private Ground_Intake ground_intake;
+  private final Ground_Intake ground_intake = new Ground_Intake();
 
   /* Pneumatics Commands*/
   public final Command intake;
@@ -67,13 +67,15 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // = new Compressor(0, PneumaticsModuleType.CTREPCM);
-		//zzzzzzzzzzzzcompressor.enableDigital();
+    compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+		//compressor.enableDigital();
+    compressor.disable();
+    //boolean pressureSwitch = compressor.getPressureSwitchValue();
+    //System.out.println(pressureSwitch);
     //compressor.disable();
 
-    ground_intake = new Ground_Intake();
-    intake = new frc.robot.commands.intake(ground_intake);
-    outtake = new frc.robot.commands.score(ground_intake);
+    intake = new intake(ground_intake);
+    outtake = new score(ground_intake);
 
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
@@ -84,7 +86,7 @@ public class RobotContainer {
             () -> robotCentric.getAsBoolean()
         )
     );
-    SmartDashboard.putNumber("Mazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzx Speed", SPEED_MULTIPLIER);
+    SmartDashboard.putNumber("Max Speed", SPEED_MULTIPLIER);
     // Configure the button bindings
     configureButtonBindings();
 
