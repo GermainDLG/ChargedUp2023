@@ -4,34 +4,45 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
 
 public class score extends CommandBase {
   private Ground_Intake ground_Intake;
   private double d;
+  private Timer timer;
   /** Creates a new score. */
   public score(Ground_Intake intake) {
     this.ground_Intake = intake;
+    timer = new Timer();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ground_Intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize(){
+    timer.start();
+  } 
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //Tilt robot down, open clamp, send out kicker, wait 1.5s, bring kicker back in
     ground_Intake.tiltDownward();
-    delay(3.5);
+    //delay(3.5);
     ground_Intake.openClamp();
-    delay(3.5);
-    ground_Intake.sendKicker();
-    delay(1.5);
+    //delay(3.5);
     ground_Intake.returnKicker();
+    if (timer.get() > 1){
+      ground_Intake.returnKicker();
+      timer.stop();
+      timer.reset();
+    }
+
+    //delay(1.5);
+   // ground_Intake.returnKicker();
   }
 
   private void delay(double d) {

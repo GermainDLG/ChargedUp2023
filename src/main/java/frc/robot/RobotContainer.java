@@ -69,7 +69,7 @@ public class RobotContainer {
   public RobotContainer() {
     compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
 		//compressor.enableDigital();
-    compressor.disable();
+    //compressor.disable();
     //boolean pressureSwitch = compressor.getPressureSwitchValue();
     //System.out.println(pressureSwitch);
     //compressor.disable();

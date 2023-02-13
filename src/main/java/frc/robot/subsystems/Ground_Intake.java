@@ -22,18 +22,15 @@ public class Ground_Intake extends SubsystemBase {
   public DoubleSolenoid tiltSolenoid;
   
   public Ground_Intake() {
-    clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 
-    Constants.GROUND_INTAKE_SOLENOID_PORTS[0], Constants.GROUND_INTAKE_SOLENOID_PORTS[1]);
+    clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
 	/* PORT[0] forward channel
 	 * PORT[1] backward channel
 	 */
-	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
-	Constants.GROUND_INTAKE_SOLENOID_PORTS[2], Constants.GROUND_INTAKE_SOLENOID_PORTS[3]);
+	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
 	/* PORT[2] forward channel
 	 * PORT[3] backward channel
 	 */
-	tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
-	Constants.GROUND_INTAKE_SOLENOID_PORTS[4], Constants.GROUND_INTAKE_SOLENOID_PORTS[5]);
+	tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
 	/* PORT[4] forward channel
 	 * PORT[5] backward channel
 	 */
@@ -42,32 +39,33 @@ public class Ground_Intake extends SubsystemBase {
 
   	//open clamp
 	public void openClamp(){
-			clampSolenoid.set(Value.kForward);
+			clampSolenoid.set(Value.kReverse);
 			}
 
   	//close clamp
 	public void closeClamp(){
-		clampSolenoid.set(Value.kReverse);
+		clampSolenoid.set(Value.kForward);
 	}
 
 	//push kicker out
 	public void sendKicker(){
-		kickerSolenoid.set(Value.kForward);
+		kickerSolenoid.set(Value.kReverse);
 	}
 
 	//bring kicker back in
 	public void returnKicker(){
-		kickerSolenoid.set(Value.kReverse);
+		kickerSolenoid.set(Value.kForward);
 	}
+	
 
 	//Tilt robot forward
 	public void tiltUpward(){
-			tiltSolenoid.set(Value.kForward);
+			tiltSolenoid.set(Value.kReverse);
 	}
 
 	//Tilt robot back upright
 	public void tiltDownward(){
-		tiltSolenoid.set(Value.kReverse);
+		tiltSolenoid.set(Value.kForward);
 	}
 
 

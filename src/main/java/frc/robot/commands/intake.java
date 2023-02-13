@@ -28,16 +28,16 @@ public class intake extends CommandBase {
   @Override
   public void execute() {
     ground_Intake.returnKicker();
-    delay(3.5);
+    //delay(3.5);
     ground_Intake.closeClamp();
-    delay(3.5);
+    //delay(3.5);
     ground_Intake.tiltUpward();
   
     // We can also use: new WaitCommand(5.0) if needed
   }
 
-  private void delay(double d) {
-  }
+ 
+
 
   // Called once the command ends or is interrupted.
   @Override
