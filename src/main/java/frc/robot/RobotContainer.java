@@ -40,17 +40,20 @@ public class RobotContainer {
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
   private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
-  private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
-  private final JoystickButton intakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
-  private final JoystickButton outtakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
+  // private final JoystickButton rotation0 = new JoystickButton(driver,
+  // XboxController.Button.kA.value);
+  private final JoystickButton outtakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
+  private final JoystickButton retractButton = new JoystickButton(driver, XboxController.Button.kA.value);
+  private final JoystickButton intakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
   private Compressor compressor;
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
   private final Ground_Intake ground_intake = new Ground_Intake();
 
-  /* Pneumatics Commands*/
-  public final Command intake;
-  public final Command outtake;
+  /* Pneumatics Commands */
+  public final Command intake = new intake(ground_intake);
+  public final Command outtake = new score(ground_intake);
+  public final Command retract = new retract(ground_intake);
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -68,24 +71,19 @@ public class RobotContainer {
    */
   public RobotContainer() {
     compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-		//compressor.enableDigital();
-    //compressor.disable();
-    //boolean pressureSwitch = compressor.getPressureSwitchValue();
-    //System.out.println(pressureSwitch);
-    //compressor.disable();
-
-    intake = new intake(ground_intake);
-    outtake = new score(ground_intake);
+    // compressor.enableDigital();
+    // compressor.disable();
+    // boolean pressureSwitch = compressor.getPressureSwitchValue();
+    // System.out.println(pressureSwitch);
+    // compressor.disable();
 
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
-            s_Swerve, 
-            () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER, 
-            () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER, 
-            () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER, 
-            () -> robotCentric.getAsBoolean()
-        )
-    );
+            s_Swerve,
+            () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
+            () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
+            () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
+            () -> robotCentric.getAsBoolean()));
     SmartDashboard.putNumber("Max Speed", SPEED_MULTIPLIER);
     // Configure the button bindings
     configureButtonBindings();
@@ -105,10 +103,11 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
-    /*Pneumatics Buttons */
+    /* Pneumatics Buttons */
     intakeButton.onTrue(intake);
     outtakeButton.onTrue(outtake);
-}
+    retractButton.onTrue(retract);
+  }
 
   private void configureSmartDashboard() {
     autoChooser.setDefaultOption("Move forward", moveForward);

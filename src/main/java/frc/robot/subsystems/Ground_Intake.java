@@ -39,12 +39,12 @@ public class Ground_Intake extends SubsystemBase {
 
   	//open clamp
 	public void openClamp(){
-			clampSolenoid.set(Value.kReverse);
+			clampSolenoid.set(Value.kForward);
 			}
 
   	//close clamp
 	public void closeClamp(){
-		clampSolenoid.set(Value.kForward);
+		clampSolenoid.set(Value.kReverse);
 	}
 
 	//push kicker out

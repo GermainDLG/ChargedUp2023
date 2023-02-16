@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -11,10 +12,13 @@ import frc.robot.subsystems.Ground_Intake;
 
 public class intake extends CommandBase {
   private Ground_Intake ground_Intake;
+  private boolean finish;
+
   /** Creates a new intake. */
   public intake(Ground_Intake intake) {
     ground_Intake = intake;
-    //this.ground_Intake = ground_Intake;
+    finish = false;
+    // this.ground_Intake = ground_Intake;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ground_Intake);
 
@@ -22,30 +26,30 @@ public class intake extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ground_Intake.returnKicker();
-    //delay(3.5);
+    // delay(3.5);
     ground_Intake.closeClamp();
-    //delay(3.5);
+    // Timer.delay(1);
+    // delay(3.5);
     ground_Intake.tiltUpward();
-  
+    finish = true;
+
     // We can also use: new WaitCommand(5.0) if needed
   }
 
- 
-
-
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }
